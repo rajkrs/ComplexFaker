@@ -1,4 +1,5 @@
 # ComplexFaker is fake data generator for complex model.
+Wokrs well with IEnumerable, List, Array and Dictionary. Based on GenFu.
 
 Nuget Package:
 	Install-Package ComplexFaker
