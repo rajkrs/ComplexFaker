@@ -1,6 +1,8 @@
-# GenFu complex model fake data generator
+# ComplexFaker is fake data generator for complex model.
 
-Uses:
+It is based on GenFu.
+
+Example:
 
             IFakeDataService faker = new FakeDataService();
 
