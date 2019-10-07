@@ -1,7 +1,7 @@
 # ComplexFaker is fake data generator for complex model.
 
 Nuget Package:
-	Install-Package ComplexFaker -Version 1.0.3
+	Install-Package ComplexFaker
 
 Example:
 
