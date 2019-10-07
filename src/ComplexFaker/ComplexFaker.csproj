@@ -4,8 +4,9 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <Authors>mr.raj111@hotmail.com</Authors>
     <Description>Generate complex fake data in C# with out any extra configuration.</Description>
-    <RepositoryUrl>https://github.com/rajkrs/GenFuDotnetCoreComplex</RepositoryUrl>
+    <RepositoryUrl>https://github.com/rajkrs/ComplexFaker</RepositoryUrl>
     <PackageProjectUrl>https://www.asptricks.net/2019/10/generate-complex-fake-object-in-c.html</PackageProjectUrl>
+    <Version>1.0.4</Version>
   </PropertyGroup>
 
   <ItemGroup>

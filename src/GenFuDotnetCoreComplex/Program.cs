@@ -1,6 +1,5 @@
-﻿using GenFu;
-using ComplexFaker.ConsoleDemo.Faker;
-using ComplexFaker.ConsoleDemo.Models;
+﻿using ComplexFaker.ConsoleDemo.Models;
+using GenFu;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -31,11 +30,16 @@ namespace ComplexFaker.ConsoleDemo
             //Generate Complex list with user defined array length 5.
             var obj5 = faker.GenerateComplex<List<ChargeSummaryDto>>(5);
 
+            //Generate complex
+            var obj6 = faker.GenerateComplex<ChargeSummaryDto>();
+
             Console.WriteLine(JsonConvert.SerializeObject(obj1, Formatting.Indented));
             Console.WriteLine(JsonConvert.SerializeObject(obj2, Formatting.Indented));
             Console.WriteLine(JsonConvert.SerializeObject(obj3, Formatting.Indented));
             Console.WriteLine(JsonConvert.SerializeObject(obj4, Formatting.Indented));
             Console.WriteLine(JsonConvert.SerializeObject(obj5, Formatting.Indented));
+            Console.WriteLine(JsonConvert.SerializeObject(obj6, Formatting.Indented));
+
             Console.WriteLine("done!");
 
             Console.ReadLine();

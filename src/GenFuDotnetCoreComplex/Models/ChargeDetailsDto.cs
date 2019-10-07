@@ -13,7 +13,7 @@ namespace ComplexFaker.ConsoleDemo.Models
         public decimal Charge_amount { get; set; }
         public ChargeDetailsDto ChargeInfo { get; set; }
         public List<ChargeDetailsDto> ChargeInfoList { get; set; }
-        public Dictionary<int ,ChargeDetailsDto> ChargeDictionary { get; set; }
+        public Dictionary<decimal ,ChargeDetailsDto> ChargeDictionary { get; set; }
 
     }
 

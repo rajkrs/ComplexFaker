@@ -9,7 +9,7 @@ using System.Linq.Expressions;
 using System.Reflection;
 using System.Threading.Tasks;
 
-namespace ComplexFaker.ConsoleDemo.Faker
+namespace ComplexFaker
 {
     public class FakeDataService : IFakeDataService
     {
@@ -118,6 +118,37 @@ namespace ComplexFaker.ConsoleDemo.Faker
                     var propObj = JsonConvert.DeserializeObject(jsonData, type);
                     propertyInfo.SetValue(obj, Convert.ChangeType(propObj, type), null);
                 }
+                else if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Dictionary<,>))
+                {
+                    Type keyType = type.GetGenericArguments()[0];
+                    Type valueType = type.GetGenericArguments()[1];
+
+
+                    var dic = Activator.CreateInstance(type);
+                    for (int i = 0; i < row; i++)
+                    {
+                        try
+                        {
+                            var dataKey = GenerateKey(keyType, (i + 1));
+
+                            var dataValue = A.New(valueType);
+                            dataValue = GenerateFakeComplexRow<object>(dataValue);
+                            type.GetMethod("Add").Invoke(dic, new[] { dataKey, dataValue });
+                        }
+                        catch (Exception) {
+
+                        }
+                    }
+
+
+
+                    var jsonData = JsonConvert.SerializeObject(dic);
+                    var propObj = JsonConvert.DeserializeObject(jsonData, type);
+                    propertyInfo.SetValue(obj, Convert.ChangeType(propObj, type), null);
+
+
+
+                }
             }
             return obj;
         }
@@ -125,7 +156,24 @@ namespace ComplexFaker.ConsoleDemo.Faker
 
 
 
-
+        private object GenerateKey(Type type, int i)
+        {
+            object dataKey;
+            if (type == typeof(string))
+            {
+                dataKey = "Key" + i;
+            }
+            else if (type == typeof(int))
+            {
+                dataKey = i;
+            }
+            else
+            {
+                dataKey = A.New(type);
+                dataKey = GenerateFakeComplexRow<object>(dataKey);
+            }
+            return dataKey;
+        }
 
 
 

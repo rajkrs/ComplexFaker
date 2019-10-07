@@ -7,7 +7,7 @@
   "targets": {
     ".NETStandard,Version=v2.0": {},
     ".NETStandard,Version=v2.0/": {
-      "ComplexFaker/1.0.0": {
+      "ComplexFaker/1.0.4": {
         "dependencies": {
           "GenFu": "1.5.6",
           "NETStandard.Library": "2.0.3",
@@ -104,7 +104,7 @@
     }
   },
   "libraries": {
-    "ComplexFaker/1.0.0": {
+    "ComplexFaker/1.0.4": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

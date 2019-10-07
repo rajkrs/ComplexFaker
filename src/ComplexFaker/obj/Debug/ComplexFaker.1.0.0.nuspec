@@ -17,6 +17,6 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="D:\repos\C#\GenFuDotnetCoreComplex\ComplexFaker\bin\Debug\netstandard2.0\ComplexFaker.dll" target="lib\netstandard2.0\ComplexFaker.dll" />
+    <file src="D:\repos\C#\GenFuDotnetCoreComplex\GenFuDotnetCoreComplex\src\ComplexFaker\bin\Debug\netstandard2.0\ComplexFaker.dll" target="lib\netstandard2.0\ComplexFaker.dll" />
   </files>
 </package>
