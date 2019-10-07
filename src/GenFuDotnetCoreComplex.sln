@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29311.281
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComplexFaker.ConsoleDemo", "GenFuDotnetCoreCOmplex\ComplexFaker.ConsoleDemo.csproj", "{5BB2B863-6E43-427F-9989-7D9679A5893F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComplexFaker.ConsoleDemo", "ComplexFaker.ConsoleDemo\ComplexFaker.ConsoleDemo.csproj", "{5BB2B863-6E43-427F-9989-7D9679A5893F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComplexFaker", "ComplexFaker\ComplexFaker.csproj", "{5F9F20AD-402F-405E-8428-D20B92F649D3}"
 EndProject
