@@ -1,6 +1,10 @@
 # ComplexFaker is fake data generator for complex model.
 
+Nuget Package: Install-Package ComplexFaker -Version 1.0.0
+
 It is based on GenFu.
+
+
 
 Example:
 
