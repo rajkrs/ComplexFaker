@@ -6,7 +6,8 @@
     <Description>Generate complex fake data in C# with out any extra configuration.</Description>
     <RepositoryUrl>https://github.com/rajkrs/ComplexFaker</RepositoryUrl>
     <PackageProjectUrl>https://www.asptricks.net/2019/10/generate-complex-fake-object-in-c.html</PackageProjectUrl>
-    <Version>1.0.4</Version>
+    <Version>1.0.5</Version>
+    <PackageReleaseNotes>Added support for premitive types keys in Dictionary.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>

@@ -12,8 +12,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="ComplexFaker" Version="1.0.4" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ComplexFaker\ComplexFaker.csproj" />
   </ItemGroup>
 
 </Project>

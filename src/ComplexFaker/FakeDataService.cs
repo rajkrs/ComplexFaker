@@ -65,7 +65,6 @@ namespace ComplexFaker
             foreach (PropertyInfo propertyInfo in obj.GetType().GetProperties())
             {
                 var type = propertyInfo.PropertyType;
-
                 //Static casting
                 if (typeof(IEnumerable<string>).IsAssignableFrom(type))
                 {
@@ -129,14 +128,20 @@ namespace ComplexFaker
                     {
                         try
                         {
-                            var dataKey = GenerateKey(keyType, (i + 1));
+                            var dataKey = GenerateRandomPremitive(keyType);
 
-                            var dataValue = A.New(valueType);
-                            dataValue = GenerateFakeComplexRow<object>(dataValue);
+                            var dataValue = GenerateRandomPremitive(valueType);
+
+                            if (dataValue == null)
+                            {
+                                dataValue = A.New(valueType);
+                                dataValue = GenerateFakeComplexRow<object>(dataValue);
+                            }
+
                             type.GetMethod("Add").Invoke(dic, new[] { dataKey, dataValue });
                         }
-                        catch (Exception) {
-
+                        catch (Exception exc) {
+                            //TODO: If dic failed to load.
                         }
                     }
 
@@ -146,9 +151,8 @@ namespace ComplexFaker
                     var propObj = JsonConvert.DeserializeObject(jsonData, type);
                     propertyInfo.SetValue(obj, Convert.ChangeType(propObj, type), null);
 
-
-
                 }
+
             }
             return obj;
         }
@@ -156,23 +160,57 @@ namespace ComplexFaker
 
 
 
-        private object GenerateKey(Type type, int i)
+        private object GenerateRandomPremitive(Type type)
         {
-            object dataKey;
-            if (type == typeof(string))
+            object value = null;
+            Random r = new Random();
+
+            if (type == typeof(string) || type == typeof(String))
             {
-                dataKey = "Key" + i;
+                var musicArtists = A.ListOf<MusicArtistNameFiller>(500);
+                value = musicArtists.Select(o => o.GetValue("Name").ToString()).ToList()[r.Next(0,500)];
             }
-            else if (type == typeof(int))
+            else if (type == typeof(Int16) || type == typeof(Int32) || type == typeof(Int64))
             {
-                dataKey = i;
+                value = (Int16)r.Next(999);
             }
-            else
+            else if (type == typeof(Int16?))
             {
-                dataKey = A.New(type);
-                dataKey = GenerateFakeComplexRow<object>(dataKey);
+                Int16? v = (Int16)r.Next(999);
             }
-            return dataKey;
+            else if (type == typeof(Int32?))
+            {
+                Int32? v = (Int32)r.Next(999);
+            }
+            else if (type == typeof(Int64?))
+            {
+                Int64? v = (Int64)r.Next(999);
+            }
+            else if (type == typeof(DateTime) || type == typeof(DateTime?))
+            {
+                value = DateTime.Now;
+            }
+            else if (type == typeof(double) || type == typeof(Double))
+            {
+                value =  15.1 * r.Next(999);
+            }
+            else if (type == typeof(float) )
+            {
+                value = (float)(15.1 * r.Next(999));
+            }
+            else if (type == typeof(double) || type == typeof(float) || type == typeof(Double))
+            {
+                value = 15.1 * r.Next(999);
+            }
+            else if (type == typeof(decimal) || type == typeof(Decimal))
+            {
+                value = (Decimal)(15.1 * r.Next(999));
+            }
+            else if (type == typeof(char) || type == typeof(Char))
+            {
+                value = (char)(r.Next(65, 97));
+            }
+            return value;
         }
 
 
