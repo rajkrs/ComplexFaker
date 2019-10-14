@@ -5,12 +5,14 @@ using System.Text;
 namespace ComplexFaker.ConsoleDemo.Models
 {
 
+
+
     public class ChargeSummaryDto
     {
         public string CompanyCode { get; set; }
         public int[] PatientIds { get; set; }
         public DateTime? DateOfService { get; set; }
-        public decimal Charge_amount { get; set; }
+        public decimal? Charge_amount { get; set; }
         public ChargeDetailsDto ChargeInfo { get; set; }
         public List<ChargeDetailsDto> ChargeInfoList { get; set; }
         public Dictionary<decimal ,ChargeDetailsDto> ChargeDictionary { get; set; }
@@ -45,5 +47,11 @@ namespace ComplexFaker.ConsoleDemo.Models
         public string CodeInfo { get; set; }
     }
 
+
+    public class GenericResponse<T>
+    {
+        public T Data { get; set; }
+        public int DataId { get; set; }
+    }
 
 }

@@ -33,12 +33,19 @@ namespace ComplexFaker.ConsoleDemo
             //Generate complex
             var obj6 = faker.GenerateComplex<ChargeSummaryDto>();
 
+            //Generic complex
+            var obj7 = faker.GenerateComplex<List<GenericResponse<ChargeSummaryDto>>>();
+
+
             Console.WriteLine(JsonConvert.SerializeObject(obj1, Formatting.Indented));
             Console.WriteLine(JsonConvert.SerializeObject(obj2, Formatting.Indented));
             Console.WriteLine(JsonConvert.SerializeObject(obj3, Formatting.Indented));
             Console.WriteLine(JsonConvert.SerializeObject(obj4, Formatting.Indented));
             Console.WriteLine(JsonConvert.SerializeObject(obj5, Formatting.Indented));
             Console.WriteLine(JsonConvert.SerializeObject(obj6, Formatting.Indented));
+            Console.WriteLine(JsonConvert.SerializeObject(obj7, Formatting.Indented));
+
+
 
             Console.WriteLine("done!");
 
