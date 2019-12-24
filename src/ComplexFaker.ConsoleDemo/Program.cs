@@ -1,5 +1,4 @@
 ﻿using ComplexFaker.ConsoleDemo.Models;
-using GenFu;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
