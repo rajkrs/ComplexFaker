@@ -13,4 +13,9 @@
     <PackageReference Include="coverlet.collector" Version="1.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ComplexFaker.ConsoleDemo\ComplexFaker.ConsoleDemo.csproj" />
+    <ProjectReference Include="..\ComplexFaker\ComplexFaker.csproj" />
+  </ItemGroup>
+
 </Project>
