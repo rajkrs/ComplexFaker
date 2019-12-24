@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComplexFaker", "ComplexFake
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Src", "Src", "{E1FC2E5F-4C20-4379-992B-EB5F9FF5BF96}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComplexFaker.Test", "ComplexFaker.Test\ComplexFaker.Test.csproj", "{EE613969-ADC1-453F-81E0-90B37EAE562A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +25,10 @@ Global
 		{5F9F20AD-402F-405E-8428-D20B92F649D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5F9F20AD-402F-405E-8428-D20B92F649D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5F9F20AD-402F-405E-8428-D20B92F649D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE613969-ADC1-453F-81E0-90B37EAE562A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE613969-ADC1-453F-81E0-90B37EAE562A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE613969-ADC1-453F-81E0-90B37EAE562A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE613969-ADC1-453F-81E0-90B37EAE562A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -30,6 +36,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{5BB2B863-6E43-427F-9989-7D9679A5893F} = {E1FC2E5F-4C20-4379-992B-EB5F9FF5BF96}
 		{5F9F20AD-402F-405E-8428-D20B92F649D3} = {E1FC2E5F-4C20-4379-992B-EB5F9FF5BF96}
+		{EE613969-ADC1-453F-81E0-90B37EAE562A} = {E1FC2E5F-4C20-4379-992B-EB5F9FF5BF96}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A13DBBA2-5EAB-4690-B04D-A581A7F3F957}
