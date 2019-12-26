@@ -1,4 +1,4 @@
-using ComplexFaker.ConsoleDemo.Models;
+using ComplexFaker.Test.Models;
 using System;
 using Xunit;
 
