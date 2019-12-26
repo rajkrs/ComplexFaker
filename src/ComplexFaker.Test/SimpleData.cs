@@ -15,7 +15,7 @@ namespace ComplexFaker.Test
             //Generate Simple obj
             var obj1 = faker.Generate<ChargeSummaryDto>();
 
-            Assert.Equal(obj1.DateOfService, DateTime.Now);
+            Assert.Equal(null, obj1.ChargeInfoList);
 
         }
 
