@@ -9,7 +9,7 @@ namespace ComplexFaker.Test
     public class SimpleData
     {
         [Fact]
-        public void GenerateSimple()
+        public void GenerateSimpleTest()
         {
             IFakeDataService faker = new FakeDataService();
             //Generate Simple obj
@@ -22,7 +22,7 @@ namespace ComplexFaker.Test
 
 
         [Fact]
-        public void GenerateComplex()
+        public void GenerateComplexTest()
         {
             IFakeDataService faker = new FakeDataService();
             //Generate Simple obj

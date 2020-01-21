@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComplexFaker", "ComplexFake
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Src", "Src", "{E1FC2E5F-4C20-4379-992B-EB5F9FF5BF96}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComplexFaker.Test", "ComplexFaker.Test\ComplexFaker.Test.csproj", "{EE613969-ADC1-453F-81E0-90B37EAE562A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComplexFaker.Test", "ComplexFaker.Test\ComplexFaker.Test.csproj", "{EE613969-ADC1-453F-81E0-90B37EAE562A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
