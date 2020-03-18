@@ -35,4 +35,7 @@ ComplexFaker is fake data generator for complex model.
         var obj6 = faker.GenerateComplex<OrderSummaryDto>();
 ```        
 
+[Running Demo on dotnetfiddle][2]
+
 [1]: https://nuget.org/packages/ComplexFaker/   "Get the NuGet Package: Install-Package ComplexFaker"
+[2]: https://dotnetfiddle.net/a8KKQy   "Running Demo on dotnetfiddle"
