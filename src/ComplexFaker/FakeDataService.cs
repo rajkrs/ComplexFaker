@@ -13,6 +13,13 @@ namespace ComplexFaker
 {
     public class FakeDataService : IFakeDataService
     {
+        public FakeDataService(bool useCache = false)
+        {
+            this._useCache = useCache;
+        }
+        private Dictionary<Type, object> cachedValues = new Dictionary<Type, object>();
+
+        private bool _useCache = false;
 
         private T GenerateFake<T>(bool isPopulateComplex = true, int row = 2) where T : class, new()
         {
@@ -102,73 +109,135 @@ namespace ComplexFaker
                     propertyInfo.SetValue(obj, Convert.ChangeType(propData, type), null);
 
                 }
-                else if (typeof(IEnumerable<object>).IsAssignableFrom(type) || type.IsArray)
+                else
                 {
-                    Type itemType = type.IsArray ? type.GetElementType() : type.GetGenericArguments().FirstOrDefault();
+                    var genericArgumentTypes = type.GetGenericArguments();
 
-                    var data = A.ListOf(itemType, row);
-
-                    data.ForEach(d =>
+                    if (typeof(IEnumerable<object>).IsAssignableFrom(type) || type.IsArray)
                     {
-                        d = GenerateFakeComplexRow<object>(d, row);
-                    });
+                        Type itemType = type.IsArray ? type.GetElementType() : genericArgumentTypes.FirstOrDefault();
 
-                    var jsonData = JsonConvert.SerializeObject(data);
-                    var propObj = JsonConvert.DeserializeObject(jsonData, type);
-                    propertyInfo.SetValue(obj, Convert.ChangeType(propObj, type), null);
-                }
-                else if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Dictionary<,>))
-                {
-                    Type keyType = type.GetGenericArguments()[0];
-                    Type valueType = type.GetGenericArguments()[1];
+                        var data = A.ListOf(itemType, row);
 
-
-                    var dic = Activator.CreateInstance(type);
-                    for (int i = 0; i < row; i++)
-                    {
-                        try
+                        data.ForEach(d =>
                         {
-                            var dataKey = GenerateRandomPremitive(keyType);
+                            d = GenerateFakeComplexRow<object>(d, row);
+                        });
 
-                            var dataValue = GenerateRandomPremitive(valueType);
+                        var jsonData = JsonConvert.SerializeObject(data);
+                        var propObj = JsonConvert.DeserializeObject(jsonData, type);
+                        propertyInfo.SetValue(obj, Convert.ChangeType(propObj, type), null);
+                    }
+                    else if (type.IsGenericType)
+                    {
+                        if (type.GetGenericTypeDefinition() == typeof(Dictionary<,>))
+                        {
+                            Type keyType = genericArgumentTypes[0];
+                            Type valueType = genericArgumentTypes[1];
 
-                            if (dataValue == null)
+
+                            var dic = Activator.CreateInstance(type);
+                            for (int i = 0; i < row; i++)
                             {
-                                dataValue = A.New(valueType);
-                                dataValue = GenerateFakeComplexRow<object>(dataValue);
+                                try
+                                {
+                                    var dataKey = GenerateRandomPrimitive(keyType);
+
+                                    var dataValue = GenerateRandomPrimitive(valueType);
+
+                                    if (dataValue == null)
+                                    {
+                                        dataValue = A.New(valueType);
+                                        dataValue = GenerateFakeComplexRow<object>(dataValue);
+                                    }
+
+                                    type.GetMethod("Add").Invoke(dic, new[] { dataKey, dataValue });
+                                }
+                                catch (Exception exc)
+                                {
+                                    //TODO: If dic failed to load.
+                                }
                             }
 
-                            type.GetMethod("Add").Invoke(dic, new[] { dataKey, dataValue });
+                            var jsonData = JsonConvert.SerializeObject(dic);
+                            var propObj = JsonConvert.DeserializeObject(jsonData, type);
+                            propertyInfo.SetValue(obj, Convert.ChangeType(propObj, type), null);
                         }
-                        catch (Exception exc) {
-                            //TODO: If dic failed to load.
+                        else if (type.GetGenericTypeDefinition() == typeof(Nullable<>))
+                        {
+                            try
+                            {
+                                object value;
+                                //if we're using cache and have a value, use it.
+                                if (_useCache && cachedValues.ContainsKey(type))
+                                {
+                                    value = cachedValues[type];
+                                }
+                                else
+                                {
+                                    //figure out the generic arguments for the constructor
+                                    List<object> genericArgumentValues = new List<object>();
+                                    foreach (var genericArgumentType in genericArgumentTypes)
+                                    {
+                                        //see if we can use primitives
+                                        var instance = GenerateRandomPrimitive(genericArgumentType);
+                                        genericArgumentValues.Add(instance);
+
+                                    }
+
+                                    value = Activator.CreateInstance(type, genericArgumentValues.ToArray());
+                                    cachedValues[type] = value;
+                                }
+
+                                propertyInfo.SetValue(obj, value);
+                            }
+                            catch
+                            {
+                                //something went wrong, let it go.
+                            }
                         }
+
                     }
+                    else
+                    {
+                        //populate other properties that aren't enumerables
+                        try
+                        {
+                            var tmp = GenerateRandomPrimitive(type);
+                            if (tmp != null)
+                            {
+                                propertyInfo.SetValue(obj, tmp);
+                            }
+                        }
+                        catch
+                        {
+                            //something went wrong, let's skip this property
+                        }
 
 
-
-                    var jsonData = JsonConvert.SerializeObject(dic);
-                    var propObj = JsonConvert.DeserializeObject(jsonData, type);
-                    propertyInfo.SetValue(obj, Convert.ChangeType(propObj, type), null);
-
+                    }
                 }
-
             }
+
             return obj;
         }
 
 
 
 
-        private object GenerateRandomPremitive(Type type)
+        private object GenerateRandomPrimitive(Type type)
         {
+            if (_useCache && cachedValues.ContainsKey(type))
+            {
+                return cachedValues[type];
+            }
             object value = null;
             Random r = new Random();
 
             if (type == typeof(string) || type == typeof(String))
             {
                 var musicArtists = A.ListOf<MusicArtistNameFiller>(500);
-                value = musicArtists.Select(o => o.GetValue("Name").ToString()).ToList()[r.Next(0,500)];
+                value = musicArtists.Select(o => o.GetValue("Name").ToString()).ToList()[r.Next(0, 500)];
             }
             else if (type == typeof(Int16) || type == typeof(Int32) || type == typeof(Int64))
             {
@@ -192,9 +261,9 @@ namespace ComplexFaker
             }
             else if (type == typeof(double) || type == typeof(Double))
             {
-                value =  15.1 * r.Next(999);
+                value = 15.1 * r.Next(999);
             }
-            else if (type == typeof(float) )
+            else if (type == typeof(float))
             {
                 value = (float)(15.1 * r.Next(999));
             }
@@ -210,6 +279,8 @@ namespace ComplexFaker
             {
                 value = (char)(r.Next(65, 97));
             }
+            if (value != null)
+                cachedValues[type] = value;
             return value;
         }
 
