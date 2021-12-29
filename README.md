@@ -2,7 +2,7 @@
 ComplexFaker
 ==========
 
-ComplexFaker is fake data generator for complex model.
+ComplexFaker is fake data generator utiity for testing purpose for complex/nested DTO til n-depth.
 ----------
 > 
 > [Get the NuGet Package: Install-Package ComplexFaker][1]
