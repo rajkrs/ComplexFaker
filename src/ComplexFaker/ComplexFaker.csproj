@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -6,7 +6,7 @@
     <Description>Generate complex fake data in C# with out any extra configuration.</Description>
     <RepositoryUrl>https://github.com/rajkrs/ComplexFaker</RepositoryUrl>
     <PackageProjectUrl>https://www.asptricks.net/2019/10/generate-complex-fake-object-in-c.html</PackageProjectUrl>
-    <Version>1.0.7</Version>
+    <Version>1.0.8</Version>
     <PackageReleaseNotes>Added support for premitive types keys in Dictionary.</PackageReleaseNotes>
     <PackageIconUrl>https://raw.githubusercontent.com/rajkrs/ComplexFaker/master/src/ComplexFaker/nuget.png</PackageIconUrl>
     <PackageTags>faker, faker-generator, faker-library, faker-provider, fakerator, faker-extensions</PackageTags>
@@ -19,8 +19,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="GenFu" Version="1.5.6" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+    <PackageReference Include="GenFu" Version="1.6.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
 </Project>
