@@ -10,8 +10,8 @@
     <PackageReleaseNotes>Added support for premitive types keys in Dictionary.</PackageReleaseNotes>
     <PackageIconUrl>https://raw.githubusercontent.com/rajkrs/ComplexFaker/master/src/ComplexFaker/nuget.png</PackageIconUrl>
     <PackageTags>faker, faker-generator, faker-library, faker-provider, fakerator, faker-extensions</PackageTags>
-    <AssemblyVersion>1.0.7.0</AssemblyVersion>
-    <FileVersion>1.0.7.0</FileVersion>
+    <AssemblyVersion>1.0.8.0</AssemblyVersion>
+    <FileVersion>1.0.8.0</FileVersion>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>ComplexFakerStrongName.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
